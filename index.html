@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry, My Pookie 🎀</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff9ecb,#ff69b4,#ffb6d9,#ffcce6);
+background-size:400% 400%;
+animation:bg 8s ease infinite;
+overflow:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+width:90%;
+max-width:500px;
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+color:white;
+font-size:35px;
+margin-bottom:15px;
+}
+
+p{
+color:white;
+font-size:18px;
+line-height:1.7;
+margin-bottom:30px;
+}
+
+.buttons{
+position:relative;
+height:140px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+#yes{
+background:#ff2d75;
+color:white;
+}
+
+#yes:hover{
+transform:scale(1.1);
+}
+
+#no{
+background:white;
+color:#ff2d75;
+position:absolute;
+left:60%;
+top:0;
+}
+
+#result{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.heart{
+position:fixed;
+font-size:25px;
+animation:float 5s linear forwards;
+pointer-events:none;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-100vh);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1>I'm Sorry, Pookie 🎀</h1>
+
+<p id="text">
+I know I made a mistake... 🥺<br><br>
+Please forgive me. You mean everything to me, and I promise to do better every day. 💖
+</p>
+
+<div class="buttons">
+<button id="yes">I Forgive You 💕</button>
+<button id="no">No 😤</button>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const result=document.getElementById("result");
+
+const messages=[
+"Please don't be mad... 🥺",
+"I'll buy you your favorite food 🍕💖",
+"You're my whole world 🌎💕",
+"I promise I'll do better 💗",
+"Pretty please? 🥹🎀",
+"You are my forever person ❤️"
+];
+
+let i=0;
+
+function moveButton(){
+let x=Math.random()*250;
+let y=Math.random()*90;
+no.style.left=x+"px";
+no.style.top=y+"px";
+
+document.getElementById("text").innerHTML=messages[i%messages.length];
+i++;
+}
+
+no.addEventListener("mouseover",moveButton);
+no.addEventListener("click",moveButton);
+
+yes.onclick=()=>{
+result.innerHTML="YAY!! 🥹💖 Thank you for forgiving me, my Pookie! I love you forever! 🎀❤️";
+
+document.querySelector(".buttons").style.display="none";
+
+for(let i=0;i<60;i++){
+setTimeout(createHeart,i*80);
+}
+}
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML=["❤️","💖","💕","💗","🎀"][Math.floor(Math.random()*5)];
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="-20px";
+heart.style.fontSize=(20+Math.random()*25)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+}
+</script>
+
+</body>
+</html>
